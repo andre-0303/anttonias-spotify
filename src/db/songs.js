@@ -1,0 +1,51 @@
+export const songs = [
+  {
+    id: 1,
+    title: "Almendra",
+    artist: "Anttonias",
+    downloaded: true,
+    src: "/music/Almendra.mp3",
+  },
+  {
+    id: 2,
+    title: "Dulces corazones",
+    artist: "Anttonias",
+    downloaded: false,
+    src: "/music/dulces_corazones.mp3",
+  },
+  {
+    id: 3,
+    title: "Adicciones, coronas y flores",
+    artist: "Anttonias",
+    downloaded: true,
+    src: "/music/Adicciones,coronasyflores.mp3",
+  },
+  {
+    id: 4,
+    title: "Mariposas",
+    artist: "Anttonias",
+    downloaded: true,
+    src: "/music/Mariposas.mp3",
+  },
+  {
+    id: 5,
+    title: "Atado a tu sentimiento",
+    artist: "Anttonias",
+    downloaded: true,
+    src: "/music/atadoatusentimiento.mp3",
+  },
+  {
+    id: 6,
+    title: "Cuerpo eterno",
+    artist: "Anttonias",
+    downloaded: false,
+    src: "/music/cuerpoeterno.mp3",
+  },
+  {
+    id: 7,
+    title: "Alma animal",
+    artist: "Anttonias",
+    downloaded: true,
+    src: "/music/almaAnimal.mp3",
+  },
+];
