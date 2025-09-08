@@ -49,10 +49,10 @@ Clone o repositório, navegue até a pasta do projeto, instale as dependências 
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/anttonias-player.git
+git clone https://github.com/andre-0303/anttonias-spotify.git
 
 # Entrar no diretório
-cd anttonias-player
+cd anttonias-spotify
 
 # Instalar dependências
 npm install
