@@ -8,6 +8,7 @@ import { PlayButton } from "./components/Play";
 function App() {
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
   const audioRef = useRef(new Audio());
 
   const playSong = (song) => {
@@ -27,7 +28,24 @@ function App() {
       setIsPlaying(true);
 
       audioRef.current.onended = () => {
-        setIsPlaying(false);
+        const currentIndex = songs.findIndex((s) => s.id === song.id);
+
+        if (isShuffle) {
+          // pega uma música aleatória diferente da atual
+          let randomIndex;
+          do {
+            randomIndex = Math.floor(Math.random() * songs.length);
+          } while (randomIndex === currentIndex);
+
+          playSong(songs[randomIndex]);
+        } else {
+          const nextSong = songs[currentIndex + 1];
+          if (nextSong) {
+            playSong(nextSong);
+          } else {
+            setIsPlaying(false); // acabou a playlist
+          }
+        }
       };
     }
   };
@@ -76,11 +94,20 @@ function App() {
               </div>
 
               <div className="flex items-center gap-4">
-                <Shuffle className="text-gray-300 h-6 w-6 cursor-pointer" />
+                <Shuffle
+                  className={`h-6 w-6 cursor-pointer ${
+                    isShuffle ? "text-green-500" : "text-gray-300"
+                  }`}
+                  onClick={() => setIsShuffle(!isShuffle)}
+                />
                 <PlayButton
                   isPlaying={isPlaying}
                   onClick={() => {
-                    if (currentSong) playSong(currentSong);
+                    if (currentSong) {
+                      playSong(currentSong);
+                    } else {
+                      playSong(songs[0]);
+                    }
                   }}
                 />
               </div>
@@ -103,8 +130,32 @@ function App() {
         ))}
       </div>
 
-      <div>
-        <p>7 músicas · 30min</p>
+      <div className="bg-[#0a0808] p-4">
+        <p className="text-gray-100">7 músicas · 30min</p>
+        <div className="flex flex-row justify-between items-center mt-4">
+          <h3 className="text-white text-2xl font-semibold">
+            Mais de Anttonias
+          </h3>
+          <p className="text-gray-400">Mostrar tudo</p>
+        </div>
+        <div className="flex flex-row gap-3">
+          <div className="mt-3">
+            <img src="/atado.jpg" className="h-40 w-auto rounded-md" />
+            <h3 className="text-white font-medium mt-3 whitespace-nowrap tracking-tight">
+              Atado a tu sentimiento
+            </h3>
+            <p className="text-gray-400">2024 · Single </p>
+          </div>
+          <div className="mt-3">
+            <img src="/dulces.jpg" className="h-40 w-auto rounded-md" />
+            <h3 className="text-white font-medium mt-3">Dulces Corazones</h3>
+            <p className="text-gray-400">2025 · Single </p>
+          </div>
+        </div>
+        <div className="mt-5">
+          <p className="text-gray-100 text-sm">© 2025 Anttonias</p>
+          <p className="text-gray-100 text-sm">℗ 2025 Anttonias</p>
+        </div>
       </div>
     </>
   );
